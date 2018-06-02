@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'HLNetworking_Example' do
+  pod 'HLNetworking', :path => '../'
+
+  target 'HLNetworking_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

@@ -1,0 +1,16 @@
+PODS:
+  - HLNetworking (0.1.0)
+
+DEPENDENCIES:
+  - HLNetworking (from `../`)
+
+EXTERNAL SOURCES:
+  HLNetworking:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  HLNetworking: 9a0bfa749b9840d640d993715e6dc793d993de66
+
+PODFILE CHECKSUM: 2c0cf7f1063afa0289b5d7809a2d865ce5875bbe
+
+COCOAPODS: 1.5.0

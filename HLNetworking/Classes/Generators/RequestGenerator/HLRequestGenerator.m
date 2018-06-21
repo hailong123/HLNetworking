@@ -44,6 +44,8 @@
                                                                       parameters:requestParams
                                                                     needHttpBody:NO];
     
+    request.HTTPMethod = @"GET";
+    
     return request;
 }
 
@@ -53,6 +55,7 @@
     NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
                                                                       parameters:requestParams
                                                                     needHttpBody:YES];
+    request.HTTPMethod = @"POST";
     
     return request;
 }
@@ -64,6 +67,8 @@
                                                                       parameters:requestParams
                                                                     needHttpBody:YES];
     
+    request.HTTPMethod = @"PUT";
+    
     return request;
 }
 
@@ -73,6 +78,8 @@
     NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
                                                                       parameters:requestParams
                                                                     needHttpBody:YES];
+    
+    request.HTTPMethod = @"DELETE";
     
     return request;
 }

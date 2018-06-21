@@ -180,8 +180,15 @@
         _sessionManager = [AFHTTPSessionManager manager];
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
         _sessionManager.requestSerializer  = [AFHTTPRequestSerializer  serializer];
-        _sessionManager.securityPolicy.validatesDomainName      = NO;
-        _sessionManager.securityPolicy.allowInvalidCertificates = YES;
+        _sessionManager.securityPolicy.validatesDomainName        = NO;
+        _sessionManager.securityPolicy.allowInvalidCertificates   = YES;
+        _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                                     @"application/json",
+                                                                     @"text/plain",
+                                                                     @"text/javascript",
+                                                                     @"text/json",
+                                                                     @"text/html",
+                                                                     @"text/css", nil];
     }
     
     return _sessionManager;

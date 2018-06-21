@@ -71,9 +71,9 @@
     NSDictionary *apiParams = [self reformParams:params];
     
     if (self.child.requestSerializerType == CTAPIManagerRequestSerializerTypeJSON) {
-        [[HLApiProxy shareInstance] setValue:[AFJSONRequestSerializer  serializer] forKey:@"sessionManager.requestSerializer"];
+        [[HLApiProxy shareInstance] setValue:[AFJSONRequestSerializer  serializer] forKeyPath:@"sessionManager.requestSerializer"];
     } else {
-        [[HLApiProxy shareInstance] setValue:[AFHTTPRequestSerializer  serializer] forKey:@"sessionManager.requestSerializer"];
+        [[HLApiProxy shareInstance] setValue:[AFHTTPRequestSerializer  serializer] forKeyPath:@"sessionManager.requestSerializer"];
     }
     
     if ([self shouldCallAPIWithParams:params]) {
@@ -191,19 +191,16 @@
     self.loading  = NO;
     self.response = response;
     
-    if (self.loading) {
-        
-    } else {
-        self.errorType = errorType;
-        //删除请求
-        [self removeRequestWithRequestId:response.requestId];
-        
-        if ([self beforePerformFailWithResponse:response]) {
-            [self.delegate managerAPIDidFaild:self];
-        }
-        
-        [self afterPerformFailWithResponse:response];
+    self.errorType = errorType;
+    //删除请求
+    [self removeRequestWithRequestId:response.requestId];
+    
+    if ([self beforePerformFailWithResponse:response]) {
+        [self.delegate managerAPIDidFaild:self];
     }
+    
+    [self afterPerformFailWithResponse:response];
+    
 }
 
 - (void)removeRequestWithRequestId:(NSInteger)requestId {

@@ -85,13 +85,13 @@ typedef NS_ENUM(NSUInteger, HLAPIManagerRequestSerializerType) {
 @protocol HLAPIManager <NSObject>
 
 @required
-- (BOOL)shouldCache;
 - (NSString *)requestUrl;
 - (HLAPIManagerRequestType)requestMethod;
 - (HLAPIManagerRequestSerializerType)requestSerializerType;
 
 @optional
 - (void)cleanData;
+- (BOOL)shouldCache;
 - (BOOL)shouldLoadFormNative;
 - (NSDictionary *)reformParams:(NSDictionary *)paramsDic;
 - (NSDictionary *)loadDataWithParams:(NSDictionary *)paramsDic;
@@ -150,21 +150,8 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 - (void)cancelAllReqeusts;
 - (void)cancelRequestWithRequestID:(NSInteger)requestID;
 
-// 拦截器方法，继承之后需要调用一下super
-- (BOOL)beforePerformSuccessWithResponse:(HLURLResponse *)response;
-- (void)afterPerformSuccessWithResponse:(HLURLResponse *)response;
-
-- (BOOL)beforePerformFailWithResponse:(HLURLResponse *)response;
-- (void)afterPerformFailWithResponse:(HLURLResponse *)response;
-
-- (BOOL)shouldCallAPIWithParams:(NSDictionary *)params;
-- (void)afterCallingAPIWithParams:(NSDictionary *)params;
-
 - (void)cleanData;
 - (BOOL)shouldCache;
 - (NSDictionary *)reformParams:(NSDictionary *)params;
-
-- (void)successedOnCallingAPI:(HLURLResponse *)response;
-- (void)failedOnCallingAPI:(HLURLResponse *)response errorType:(HLAPIManagerErrorType)errorType;
 
 @end

@@ -361,6 +361,10 @@
     return NO;
 }
 
+- (BOOL)shouldLoadFormNative {
+    return NO;
+}
+
 #pragma mark - Delegate
 
 #pragma mark - Setter And Getter

@@ -93,14 +93,14 @@
         urlString = [NSString stringWithFormat:@"%@/%@",networkConfig.baseUrl,methodName];
     }
     
-    [networkConfig.commonHeaderFiledDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [self.httpRequestSerializer setValue:obj forHTTPHeaderField:key];
-    }];
-    
     NSMutableURLRequest *request = [self.httpRequestSerializer requestWithMethod:methodName
                                                                        URLString:urlString
                                                                       parameters:requestParams
                                                                            error:NULL];
+    
+    [networkConfig.commonHeaderFiledDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [request setValue:obj forHTTPHeaderField:key];
+    }];
     
     if (needBody) {
         request.HTTPBody = [NSJSONSerialization dataWithJSONObject:requestParams options:0 error:NULL];

@@ -6,6 +6,7 @@
 //
 
 #import "HLAppContext.h"
+#import "HLLocationManager.h"
 #import "AFNetworkReachabilityManager.h"
 
 @interface HLAppContext ()
@@ -266,11 +267,13 @@
 
 - (void)appStarted {
     self.sessionID = [[NSUUID UUID].UUIDString copy];
-    //TODO:开始定位
+    //开始定位
+    [[HLLocationManager shareInstance] startLocation];
 }
 
 - (void)appEnded {
-    //TODO:结束定位
+    //结束定位
+    [[HLLocationManager shareInstance] stopLocation];
 }
 
 //推送相关
@@ -294,13 +297,13 @@
 
 //地理位置相关
 - (CGFloat)latitude {
-    //TODO:经度
-    return 0.0f;
+    //经度
+    return [HLLocationManager shareInstance].currentLocation.coordinate.latitude;
 }
 
 - (CGFloat)longitude {
-    //TODO:纬度
-    return 0.0f;
+    //纬度
+    return [HLLocationManager shareInstance].currentLocation.coordinate.longitude;
 }
 
 @end

@@ -42,10 +42,8 @@
     
     NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
                                                                       parameters:requestParams
+                                                                      httpMethod:@"GET"
                                                                     needHttpBody:NO];
-    
-    request.HTTPMethod = @"GET";
-    
     return request;
 }
 
@@ -54,9 +52,8 @@
     
     NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
                                                                       parameters:requestParams
+                                                                      httpMethod:@"POST"
                                                                     needHttpBody:YES];
-    request.HTTPMethod = @"POST";
-    
     return request;
 }
 
@@ -65,10 +62,8 @@
     
     NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
                                                                       parameters:requestParams
+                                                                      httpMethod:@"PUT"
                                                                     needHttpBody:YES];
-    
-    request.HTTPMethod = @"PUT";
-    
     return request;
 }
 
@@ -77,15 +72,14 @@
     
     NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
                                                                       parameters:requestParams
+                                                                      httpMethod:@"DELETE"
                                                                     needHttpBody:YES];
-    
-    request.HTTPMethod = @"DELETE";
-    
     return request;
 }
 
 - (NSMutableURLRequest *)generateMutableURLReqeustWithMethodName:(NSString *)methodName
                                                       parameters:(NSDictionary *)requestParams
+                                                      httpMethod:(NSString *)httpMethod
                                                     needHttpBody:(BOOL)needBody {
     
     NSParameterAssert(methodName);
@@ -113,6 +107,7 @@
         request.HTTPBody = [NSJSONSerialization dataWithJSONObject:requestParams options:0 error:NULL];
     }
     
+    request.HTTPMethod    = httpMethod;
     request.requestParams = requestParams;
     
     if ([HLAppContext shareInstance].accessToken) {

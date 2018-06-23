@@ -178,7 +178,7 @@
                 [self.delegate managerAPIDidSuccess:self];
             }
         }
-        [self afterPerformFailWithResponse:response];
+        [self afterPerformSuccessWithResponse:response];
     } else {
         [self failedOnCallingAPI:response errorType:HLAPIManagerErrorTypeNoContent];
     }

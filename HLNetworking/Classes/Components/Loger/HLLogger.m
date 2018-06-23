@@ -79,7 +79,15 @@
     NSMutableString *logString = [NSMutableString stringWithString:@"\n\n==============================================================\n=                        API Response                        =\n==============================================================\n\n"];
     
     [logString appendFormat:@"Status:\t%ld\t(%@)\n\n", (long)response.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:response.statusCode]];
-    [logString appendFormat:@"Content:\n\t%@\n\n", responseData];
+    if ([responseData isKindOfClass:[NSDictionary class]]) {
+        NSError *parseError = nil;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseData options:NSJSONWritingPrettyPrinted error:&parseError];
+        
+        NSString *responseStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        [logString appendFormat:@"Content:\n\t%@\n\n", responseStr];
+    }
+    
     if (shouldLogError) {
         [logString appendFormat:@"Error Domain:\t\t\t\t\t\t\t%@\n", error.domain];
         [logString appendFormat:@"Error Domain Code:\t\t\t\t\t\t%ld\n", (long)error.code];

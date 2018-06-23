@@ -21,8 +21,6 @@
 
 @property (nonatomic, assign, readwrite) BOOL hasCache;
 
-@property (nonatomic, copy, readwrite) NSString *contentStr;
-@property (nonatomic, copy, readwrite) NSData *responseData;
 @property (nonatomic, copy, readwrite) NSURLRequest *reqeust;
 @property (nonatomic, assign, readwrite) NSInteger requestId;
 
@@ -31,25 +29,21 @@
 @implementation HLURLResponse
 
 #pragma mark - Private Method
-- (instancetype)initWithResponseString:(NSString *)responseString
-                             requestId:(NSNumber *)requestId
-                               request:(NSURLRequest *)request
-                          responseData:(NSData *)responseData
-                                 error:(NSError *)error {
+- (instancetype)initWithRequestId:(NSNumber *)requestId
+                     responseData:(id)responseData
+                          request:(NSURLRequest *)request
+                            error:(NSError *)error {
+    
     if (self = [super init]) {
         
         self.reqeust       = request;
         self.requestId     = [requestId integerValue];
-        self.contentStr    = [responseString CT_defaultValue:@""];
-        self.responseData  = responseData;
         self.requestParams = request.requestParams;
     
         self.hasCache = NO;
         
         if (responseData) {
-            self.content = [NSJSONSerialization JSONObjectWithData:responseData
-                                                           options:NSJSONReadingMutableContainers
-                                                             error:&error];
+            self.content = responseData;
         } else {
             self.content = nil;
         }
@@ -60,26 +54,22 @@
     return self;
 }
 
-- (instancetype)initWithResponseString:(NSString *)responseString
-                             requestId:(NSNumber *)requestId
-                               request:(NSURLRequest *)request
-                          responseData:(NSData *)responseData
-                                status:(HLURLResponseStatus)status {
+- (instancetype)initWithRequestId:(NSNumber *)requestId
+                     responseData:(id)responseData
+                          request:(NSURLRequest *)request
+                           status:(HLURLResponseStatus)status {
+    
     if (self = [super init]) {
         
         self.status        = status;
         self.reqeust       = request;
         self.requestId     = [requestId integerValue];
-        self.contentStr    = [responseString CT_defaultValue:@""];
-        self.responseData  = responseData;
         self.requestParams = request.requestParams;
         
         self.hasCache = NO;
         
         if (responseData) {
-            self.content = [NSJSONSerialization JSONObjectWithData:responseData
-                                                           options:NSJSONReadingMutableContainers
-                                                             error:NULL];
+            self.content = responseData;
         } else {
             self.content = nil;
         }
@@ -95,8 +85,6 @@
         self.status        = [self responseStatusWithError:nil];
         self.reqeust       = nil;
         self.requestId     = 0;
-        self.contentStr    = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        self.responseData  = [data copy];
         
         self.hasCache = YES;
         

@@ -62,25 +62,22 @@
                                           [self.dispatchTable removeObjectForKey:requestID];
                                           
                                           NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                                          NSData *responseData            = responseObject;
-                                          NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
                                           
                                           if (error) {
                                               [HLLogger logDebugInfoWithResponse:httpResponse
-                                                                  responseString:responseString
+                                                                  responseData:responseObject
                                                                          request:request
                                                                            error:error];
                                               
-                                              HLURLResponse *response = [[HLURLResponse alloc] initWithResponseString:responseString requestId:requestID request:request responseData:responseData error:error];
+                                              HLURLResponse *response = [[HLURLResponse alloc] initWithRequestId:requestID responseData:responseObject request:request error:error];
                                               
                                               fail?fail(response):nil;
-                                          } else {
-                                              [HLLogger logDebugInfoWithResponse:httpResponse
-                                                                  responseString:responseString
-                                                                         request:request
-                                                                           error:error];
                                               
-                                              HLURLResponse *response = [[HLURLResponse alloc] initWithResponseString:responseString requestId:requestID request:request responseData:responseData status:HLURLResponseStatusSuccess];
+                                          } else {
+                                              
+                                              [HLLogger logDebugInfoWithResponse:httpResponse responseData:responseObject request:request error:error];
+                             
+                                              HLURLResponse *response = [[HLURLResponse alloc] initWithRequestId:requestID responseData:responseObject request:request status:HLURLResponseStatusSuccess];
                                               
                                               success?success(response):nil;
                                           }

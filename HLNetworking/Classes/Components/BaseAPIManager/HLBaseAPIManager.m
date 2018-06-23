@@ -158,8 +158,6 @@
     
     if (response.content) {
         self.fetchRawData = [response.content copy];
-    } else {
-        self.fetchRawData = [response.responseData copy];
     }
     
     //删除请求根据 reqeustID

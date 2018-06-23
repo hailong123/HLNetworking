@@ -21,24 +21,20 @@
 
 @property (nonatomic, assign, readonly) BOOL hasCache;
 
-@property (nonatomic, copy, readonly) NSString *contentStr;
-@property (nonatomic, copy, readonly) NSData *responseData;
 @property (nonatomic, copy, readonly) NSURLRequest *reqeust;
 @property (nonatomic, assign, readonly) NSInteger requestId;
 
 @property (nonatomic, copy) NSDictionary *requestParams;
 
-- (instancetype)initWithResponseString:(NSString *)responseString
-                             requestId:(NSNumber *)requestId
-                               request:(NSURLRequest *)request
-                          responseData:(NSData *)responseData
-                                status:(HLURLResponseStatus)status;
+- (instancetype)initWithRequestId:(NSNumber *)requestId
+                     responseData:(id)responseData
+                          request:(NSURLRequest *)request
+                           status:(HLURLResponseStatus)status;
 
-- (instancetype)initWithResponseString:(NSString *)responseString
-                             requestId:(NSNumber *)requestId
-                               request:(NSURLRequest *)request
-                          responseData:(NSData *)responseData
-                                error:(NSError *)error;
+- (instancetype)initWithRequestId:(NSNumber *)requestId
+                     responseData:(id)responseData
+                          request:(NSURLRequest *)request
+                            error:(NSError *)error;
 
 
 //此方法调用时 cache 默认为YES 以上方法调用时cache默认为NO

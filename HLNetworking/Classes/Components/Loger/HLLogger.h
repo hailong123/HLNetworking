@@ -23,7 +23,7 @@
                      httpMethod:(NSString *)httpMethod;
 
 + (void)logDebugInfoWithResponse:(NSHTTPURLResponse *)response
-                  responseString:(NSString *)responseString
+                    responseData:(id)responseData
                          request:(NSURLRequest *)request
                            error:(NSError *)error;
 

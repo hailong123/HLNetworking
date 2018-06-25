@@ -8,11 +8,17 @@
 
 #import "HLAppDelegate.h"
 
+#import "HLNetworkConfig.h"
+
 @implementation HLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    HLNetworkConfig *config = [HLNetworkConfig shareConfig];
+    
+    config.baseUrl = @"http://localhost:8880/Meet/public/";
+    
     return YES;
 }
 

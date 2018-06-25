@@ -50,10 +50,7 @@
         _fetchRawData = nil;
         _errorMessage = nil;
         _errorType    = HLAPIManagerErrorTypeDefault;
-        
-        _nextPageNumber      = 1;
-        _totalPropertyNumber = 0;
-        
+
         if ([self conformsToProtocol:@protocol(HLAPIManager)]) {
             self.child = (id <HLAPIManager>)self;
         } else {
@@ -67,8 +64,15 @@
 
 - (NSInteger)loadDataWithParams:(NSDictionary *)params {
     
-    NSInteger requestId     = 0;
-    NSDictionary *apiParams = [self reformParams:params];
+    NSInteger requestId            = 0;
+    NSMutableDictionary *apiParams = [NSMutableDictionary dictionary];
+    
+    if ([self.child respondsToSelector:@selector(reformParams:)]) {
+        apiParams = [[self reformParams:nil] mutableCopy];
+        [apiParams addEntriesFromDictionary:params];
+    } else {
+        apiParams = [[self reformParams:params] mutableCopy];
+    }
     
     if (self.child.requestSerializerType == CTAPIManagerRequestSerializerTypeJSON) {
         [[HLApiProxy shareInstance] setValue:[AFJSONRequestSerializer  serializer] forKeyPath:@"sessionManager.requestSerializer"];
@@ -198,7 +202,6 @@
     }
     
     [self afterPerformFailWithResponse:response];
-    
 }
 
 - (void)removeRequestWithRequestId:(NSInteger)requestId {
@@ -252,32 +255,6 @@
     return requestId;
 }
 
-- (void)loadNextPage {
-    
-    if (self.isLoading) {
-        return;
-    }
-    
-    NSInteger totalPage = ceil(self.totalPropertyNumber/15.0);
-    
-    self.nextPageNumber ++;
-    
-    if (totalPage > 1 && self.nextPageNumber <= self.totalPropertyNumber) {
-        [self loadData];
-    }
-}
-
-- (void)loadPrecedPage {
-    
-    if (self.isLoading) {
-        return;
-    }
-    
-    self.nextPageNumber = 1;
-    
-    [self loadData];
-}
-
 - (BOOL)beforePerformSuccessWithResponse:(HLURLResponse *)response {
     
     BOOL result    = YES;
@@ -298,7 +275,7 @@
 
 - (BOOL)beforePerformFailWithResponse:(HLURLResponse *)response {
 
-    BOOL result = NO;
+    BOOL result = YES;
     
     if (self != self.interceptor && ([self.interceptor respondsToSelector:@selector(manager:beforePerformFailWithResponse:)])) {
         [self.interceptor manager:self beforePerformFailWithResponse:response];

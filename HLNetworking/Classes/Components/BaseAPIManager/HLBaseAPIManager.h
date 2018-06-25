@@ -138,14 +138,9 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 @property (nonatomic, copy) AFConstructingBlock constructingBodyBlock;
 
-@property (nonatomic, assign) NSInteger nextPageNumber;
-@property (nonatomic, assign) NSInteger totalPropertyNumber;
-
 - (id)fetchDataWithReformer:(id<HLAPIManagerDataReformer>)reformer;
 
 - (NSInteger)loadData;
-- (void)loadNextPage;
-- (void)loadPrecedPage;
 
 - (void)cancelAllReqeusts;
 - (void)cancelRequestWithRequestID:(NSInteger)requestID;

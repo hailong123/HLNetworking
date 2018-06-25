@@ -24,6 +24,7 @@
 		681AB54B5424C8AAA1606310 /* Pods_HLNetworking_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BCC32E843433314D8EDCDD /* Pods_HLNetworking_Tests.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		FE1BDB2E20DE245B00C74904 /* HLHomeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1BDB2D20DE245B00C74904 /* HLHomeRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,12 +62,14 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73BCC32E843433314D8EDCDD /* Pods_HLNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HLNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8F66EFF20CD131274A68C44F /* HLNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HLNetworking.podspec; path = ../HLNetworking.podspec; sourceTree = "<group>"; };
+		8F66EFF20CD131274A68C44F /* HLNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HLNetworking.podspec; path = ../HLNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C80686368EB7F8711E20FF78 /* Pods-HLNetworking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLNetworking_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HLNetworking_Tests/Pods-HLNetworking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9BC571344DDDBE8F180A01C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D32ED9EF3538529DD65874E9 /* Pods_HLNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HLNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D799270898E2D9EB6796EA68 /* Pods-HLNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLNetworking_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HLNetworking_Example/Pods-HLNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E7C55142B296EC3F36163951 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		FE1BDB2C20DE245B00C74904 /* HLHomeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHomeRequest.h; sourceTree = "<group>"; };
+		FE1BDB2D20DE245B00C74904 /* HLHomeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHomeRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,7 @@
 		6003F593195388D20070C39A /* Example for HLNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				FE1BDB2B20DE245B00C74904 /* HLRequest */,
 				6003F59C195388D20070C39A /* HLAppDelegate.h */,
 				6003F59D195388D20070C39A /* HLAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -194,6 +198,15 @@
 				C9BC571344DDDBE8F180A01C /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		FE1BDB2B20DE245B00C74904 /* HLRequest */ = {
+			isa = PBXGroup;
+			children = (
+				FE1BDB2C20DE245B00C74904 /* HLHomeRequest.h */,
+				FE1BDB2D20DE245B00C74904 /* HLHomeRequest.m */,
+			);
+			path = HLRequest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE1BDB2E20DE245B00C74904 /* HLHomeRequest.m in Sources */,
 				6003F59E195388D20070C39A /* HLAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* HLViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

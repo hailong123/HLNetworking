@@ -9,7 +9,7 @@
 
 #import "HLApiProxy.h"
 #import "HLAppContext.h"
-#import "HLNetworkConfig.h"
+#import "HLNetworkingConfigurationManager.h"
 
 #import "NSArray+AXNetworkingMethods.h"
 #import "NSObject+AXNetworkingMethods.h"
@@ -55,7 +55,7 @@
     
     [logString appendFormat:@"API Name:\t\t%@\n", [apiName CT_defaultValue:@"N/A"]];
     [logString appendFormat:@"Method:\t\t\t%@\n", [httpMethod CT_defaultValue:@"N/A"]];
-    [logString appendFormat:@"Version:\t\t%@\n", [[HLNetworkConfig shareConfig].apiVersion CT_defaultValue:@"N/A"]];
+    [logString appendFormat:@"Version:\t\t%@\n", [[HLNetworkingConfigurationManager shareConfig].apiVersion CT_defaultValue:@"N/A"]];
     [logString appendFormat:@"Params:\n%@",requestParams];
     
     [logString appendURLRequest:request];
@@ -116,7 +116,7 @@
     NSMutableString *logString = [NSMutableString stringWithString:@"\n\n==============================================================\n=                      Cached Response                       =\n==============================================================\n\n"];
     
     [logString appendFormat:@"API Name:\t\t%@\n", [methodName CT_defaultValue:@"N/A"]];
-    [logString appendFormat:@"Version:\t\t%@\n", [[HLNetworkConfig shareConfig].apiVersion CT_defaultValue:@"N/A"]];
+    [logString appendFormat:@"Version:\t\t%@\n", [[HLNetworkingConfigurationManager shareConfig].apiVersion CT_defaultValue:@"N/A"]];
     [logString appendFormat:@"Method Name:\t%@\n", methodName];
     [logString appendFormat:@"Params:\n%@\n\n", response.requestParams];
     

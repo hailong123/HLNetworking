@@ -8,14 +8,14 @@
 
 #import "HLAppDelegate.h"
 
-#import "HLNetworkConfig.h"
+#import "HLNetworkingConfigurationManager.h"
 
 @implementation HLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    HLNetworkConfig *config = [HLNetworkConfig shareConfig];
+    HLNetworkingConfigurationManager *config = [HLNetworkingConfigurationManager shareConfig];
     
     config.baseUrl = @"http://localhost:8880/Meet/public/";
     

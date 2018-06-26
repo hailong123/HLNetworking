@@ -1,5 +1,5 @@
 //
-//  HLNetworkConfig.h
+//  HLNetworkingConfigurationManager.h
 //  HLNetworking
 //
 //  Created by SeaDragon on 2018/6/2.
@@ -10,17 +10,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HLNetworkConfig : NSObject
+@interface HLNetworkingConfigurationManager : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new  NS_UNAVAILABLE;
 
-+ (HLNetworkConfig *)shareConfig;
++ (HLNetworkingConfigurationManager *)shareConfig;
 
 @property (nonatomic, copy) NSString *baseUrl;    //基地址
 @property (nonatomic, copy) NSString *cdnsUrl;    //cdn基地址
 @property (nonatomic, copy) NSString *apiVersion; //后台版本号
 
 @property (nonatomic, copy) NSDictionary *commonHeaderFiledDic;// HTTP header
+
 
 @end

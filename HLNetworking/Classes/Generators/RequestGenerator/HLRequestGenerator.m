@@ -14,7 +14,7 @@
 #endif
 
 #import "HLAppContext.h"
-#import "HLNetworkConfig.h"
+#import "HLNetworkingConfigurationManager.h"
 #import "NSURLRequest+CTNetworkingMethods.h"
 
 @interface HLRequestGenerator ()
@@ -84,7 +84,7 @@
     
     NSParameterAssert(methodName);
     
-    HLNetworkConfig *networkConfig = [HLNetworkConfig shareConfig];
+    HLNetworkingConfigurationManager *networkConfig = [HLNetworkingConfigurationManager shareConfig];
     
     NSString *urlString = @"";
     

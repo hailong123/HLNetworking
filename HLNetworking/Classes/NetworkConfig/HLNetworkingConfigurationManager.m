@@ -1,16 +1,16 @@
 //
-//  HLNetworkConfig.m
+//  HLNetworkingConfigurationManager.m
 //  HLNetworking
 //
 //  Created by SeaDragon on 2018/6/2.
 //
 
-#import "HLNetworkConfig.h"
+#import "HLNetworkingConfigurationManager.h"
 
-@implementation HLNetworkConfig
+@implementation HLNetworkingConfigurationManager
 
-+ (HLNetworkConfig *)shareConfig {
-    static HLNetworkConfig *_instance;
++ (HLNetworkingConfigurationManager *)shareConfig {
+    static HLNetworkingConfigurationManager *_instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[[self class] alloc] init];

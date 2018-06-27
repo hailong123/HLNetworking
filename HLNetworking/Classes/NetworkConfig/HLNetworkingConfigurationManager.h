@@ -8,6 +8,8 @@
     用途:此文件用于配置网络的相关信息配置
  */
 
+extern NSString * const kNotificationNameErrorCodeNumber;
+
 #import <Foundation/Foundation.h>
 
 @interface HLNetworkingConfigurationManager : NSObject
@@ -23,5 +25,14 @@
 
 @property (nonatomic, copy) NSDictionary *commonHeaderFiledDic;// HTTP header
 
+/**
+ * 请求配置相关
+ */
+
+//Default Value 60s
+@property (nonatomic, assign) NSTimeInterval timeoutSeconds;
+@property (nonatomic, assign) NSInteger errorCodeNumber;
+
+@property (nonatomic, copy) NSString *errorCodeStr;
 
 @end

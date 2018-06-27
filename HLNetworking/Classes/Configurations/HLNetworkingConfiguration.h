@@ -26,6 +26,4 @@ static NSString *HLPasteboardType      = @"xxxx";
 static NSString *HLAccessTokenName     = @"xxxx";
 static NSString *HLKeychainServiceName = @"xxxxx";
 
-static NSTimeInterval kHLNetworkingTimeoutSeconds = 60;
-
 #endif /* HLNetworkingConfiguration_h */

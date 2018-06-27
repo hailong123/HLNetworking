@@ -122,7 +122,7 @@
     if (!_httpRequestSerializer) {
         _httpRequestSerializer = [AFHTTPRequestSerializer serializer];
         _httpRequestSerializer.cachePolicy      = NSURLRequestUseProtocolCachePolicy;
-        _httpRequestSerializer.timeoutInterval  = kHLNetworkingTimeoutSeconds;
+        _httpRequestSerializer.timeoutInterval  = [HLNetworkingConfigurationManager shareConfig].timeoutSeconds;
     }
     
     return _httpRequestSerializer;

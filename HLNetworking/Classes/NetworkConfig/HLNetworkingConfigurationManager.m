@@ -7,6 +7,8 @@
 
 #import "HLNetworkingConfigurationManager.h"
 
+NSString * const kNotificationNameErrorCodeNumber = @"kNotificationNameErrorCodeNumber";
+
 @implementation HLNetworkingConfigurationManager
 
 + (HLNetworkingConfigurationManager *)shareConfig {
@@ -26,6 +28,8 @@
         self.baseUrl    = @"";
         self.cdnsUrl    = @"";
         self.apiVersion = @"";
+        
+        self.timeoutSeconds = 60.0f;
         
         self.commonHeaderFiledDic = @{};
     }

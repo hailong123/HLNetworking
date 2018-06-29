@@ -71,7 +71,7 @@
     
     if ([HLAppContext shareInstance].accessToken) {
         [request setValue:[HLAppContext shareInstance].accessToken
-       forHTTPHeaderField:HLAccessTokenName];
+       forHTTPHeaderField:[HLNetworkingConfigurationManager shareConfig].accessToken];
     }
     
     return request;

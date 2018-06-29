@@ -40,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 用于设置请求的超时时间 默认为60s */
 @property (nonatomic, assign) NSTimeInterval timeoutSeconds;
 
+/** 用于设置Token名称设置,用于HTTP请求头 */
+@property (nonatomic, copy) NSString *accessToken;
+
 @end
 
 NS_ASSUME_NONNULL_END

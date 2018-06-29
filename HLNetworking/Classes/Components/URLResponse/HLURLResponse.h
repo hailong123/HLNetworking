@@ -11,26 +11,44 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HLNetworkingConfiguration.h"
+NS_ASSUME_NONNULL_BEGIN
 
 @interface HLURLResponse : NSObject
 
-@property (nonatomic, assign, readonly) HLURLResponseStatus status;
+/** 接口所返回的数据 只读属性 */
+@property (nonatomic, strong, readonly) id content;
 
-@property (nonatomic, copy, readonly) id content;
-
+/** 是否使用缓存 默认为NO 只读属性 */
 @property (nonatomic, assign, readonly) BOOL hasCache;
 
-@property (nonatomic, copy, readonly) NSURLRequest *reqeust;
+/** 存储请求 */
+@property (nonatomic, strong, readonly) NSURLRequest *reqeust;
+
+/** 存储请求的ID */
 @property (nonatomic, assign, readonly) NSInteger requestId;
 
+/** 响应请求的请求参数 */
 @property (nonatomic, copy) NSDictionary *requestParams;
 
+/**
+ 描述:生成请求响应对象
+ @params  requestId    请求的ID
+          responseData 接口返回数据
+          request      请求
+ @return  响应对象
+ */
 - (instancetype)initWithRequestId:(NSNumber *)requestId
                      responseData:(id)responseData
-                          request:(NSURLRequest *)request
-                           status:(HLURLResponseStatus)status;
+                          request:(NSURLRequest *)request;
 
+/**
+ 描述:生成请求响应对象
+ @params  requestId    请求的ID
+          responseData 接口返回数据
+          request      请求
+          error        错误信息
+ @return  响应对象
+ */
 - (instancetype)initWithRequestId:(NSNumber *)requestId
                      responseData:(id)responseData
                           request:(NSURLRequest *)request
@@ -41,3 +59,5 @@
 - (instancetype)initWithData:(NSData *)data;
 
 @end
+
+NS_ASSUME_NONNULL_END

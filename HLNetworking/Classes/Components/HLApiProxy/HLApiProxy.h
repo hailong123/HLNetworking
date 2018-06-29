@@ -28,8 +28,9 @@ typedef void(^HLCallBack)(HLURLResponse *response);
  描述:生成GET请求方法
  @params  params     请求所需的餐宿
           methodName 请求方法
-          success    成功请求回调,实现此回调可获取到接口返回数据
-          fail       失败请求回调,实现此回调可获取到接口返回数据
+          baseAPIManager 基类的请求
+          success        成功请求回调,实现此回调可获取到接口返回数据
+          fail           失败请求回调,实现此回调可获取到接口返回数据
  @return 返回 requestID
  */
 - (NSInteger)callGETMethodWithParams:(NSDictionary *)params
@@ -42,8 +43,9 @@ typedef void(^HLCallBack)(HLURLResponse *response);
  描述:生成POST请求方法
  @params  params     请求所需的餐宿
           methodName 请求方法
-          success    成功请求回调,实现此回调可获取到接口返回数据
-          fail       失败请求回调,实现此回调可获取到接口返回数据
+          baseAPIManager 基类的请求
+          success        成功请求回调,实现此回调可获取到接口返回数据
+          fail           失败请求回调,实现此回调可获取到接口返回数据
 @return 返回 requestID
  */
 - (NSInteger)callPOSTMethodWithParams:(NSDictionary *)params
@@ -56,8 +58,9 @@ typedef void(^HLCallBack)(HLURLResponse *response);
  描述:生成PUT请求方法
  @params  params     请求所需的餐宿
           methodName 请求方法
-          success    成功请求回调,实现此回调可获取到接口返回数据
-          fail       失败请求回调,实现此回调可获取到接口返回数据
+          baseAPIManager 基类的请求
+          success        成功请求回调,实现此回调可获取到接口返回数据
+          fail           失败请求回调,实现此回调可获取到接口返回数据
  @return 返回 requestID
  */
 - (NSInteger)callPUTMethodWithParams:(NSDictionary *)params
@@ -70,8 +73,9 @@ typedef void(^HLCallBack)(HLURLResponse *response);
  描述:生成DELETE请求方法
  @params  params     请求所需的餐宿
           methodName 请求方法
-          success    成功请求回调,实现此回调可获取到接口返回数据
-          fail       失败请求回调,实现此回调可获取到接口返回数据
+          baseAPIManager 基类的请求
+          success        成功请求回调,实现此回调可获取到接口返回数据
+          fail           失败请求回调,实现此回调可获取到接口返回数据
  @return 返回 requestID
  */
 - (NSInteger)callDELETEMethodWithParams:(NSDictionary *)params

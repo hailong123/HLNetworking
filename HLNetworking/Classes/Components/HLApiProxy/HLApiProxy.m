@@ -49,9 +49,11 @@
 - (NSNumber *)callApiWithRequest:(NSURLRequest *)request
                          success:(HLCallBack)success
                             fail:(HLCallBack)fail {
-    
-    NSLog(@"\n==================================\n\nRequest Start: \n\n %@\n\n==================================", request.URL);
 
+#ifdef DEBUG
+    NSLog(@"\n==================================\n\nRequest Start: \n\n %@\n\n==================================", request.URL);
+#endif
+    
     __block NSURLSessionDataTask *dataTask = nil;
     
     dataTask = [self.sessionManager dataTaskWithRequest:request
@@ -78,7 +80,7 @@
                                               
                                               [HLLogger logDebugInfoWithResponse:httpResponse responseData:responseObject request:request error:error];
                              
-                                              HLURLResponse *response = [[HLURLResponse alloc] initWithRequestId:requestID responseData:responseObject request:request status:HLURLResponseStatusSuccess];
+                                              HLURLResponse *response = [[HLURLResponse alloc] initWithRequestId:requestID responseData:responseObject request:request];
                                               
                                               success?success(response):nil;
                                           }
@@ -159,7 +161,6 @@
     NSURLSessionDataTask *dataTask = self.dispatchTable[requestId];
     [dataTask cancel];
     [self.dispatchTable removeObjectForKey:requestId];
-    
 }
 
 - (void)cancelAllRequest {

@@ -25,9 +25,10 @@ NSString * const kNotificationNameErrorCodeNumber = @"kNotificationNameErrorCode
     
     if (self = [super init]) {
         
-        self.baseUrl    = @"";
-        self.cdnsUrl    = @"";
-        self.apiVersion = @"";
+        self.baseUrl     = @"";
+        self.cdnsUrl     = @"";
+        self.apiVersion  = @"";
+        self.accessToken = @"";
         
         self.timeoutSeconds       = 60.0f;
         self.httpHeaderDictionary = @{};

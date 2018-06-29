@@ -74,12 +74,6 @@
         apiParams = [params mutableCopy];
     }
     
-    if (self.child.requestSerializerType == HLAPIManagerRequestSerializerTypeJSON) {
-        [[HLApiProxy shareInstance] setValue:[AFJSONRequestSerializer  serializer] forKeyPath:@"sessionManager.requestSerializer"];
-    } else {
-        [[HLApiProxy shareInstance] setValue:[AFHTTPRequestSerializer  serializer] forKeyPath:@"sessionManager.requestSerializer"];
-    }
-    
     if ([self shouldCallAPIWithParams:params]) {
         if ([self.validator manager:self isCorrectWithParamsData:apiParams]) {
             if ([self.child shouldLoadFormNative]) {

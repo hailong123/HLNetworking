@@ -10,8 +10,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HLNetworkingConfiguration.h"
-
 @interface HLAppContext : NSObject
 
 //凡是未声明 readonly 属性的都需要在初始化的时候由外部给提供

@@ -17,8 +17,6 @@
 
 @interface HLLogger ()
 
-@property (nonatomic, copy, readwrite) HLLoggerConfiguration *configParams;
-
 @end
 
 @implementation HLLogger
@@ -33,15 +31,6 @@
     });
     
     return _instance;
-}
-
-- (instancetype)init {
-    
-    if (self = [super init]) {
-        self.configParams = [[HLLoggerConfiguration alloc] init];
-    }
-    
-    return self;
 }
 
 + (void)logDebugInfoWithRequest:(NSURLRequest *)request

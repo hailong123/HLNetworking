@@ -51,7 +51,7 @@
 }
 
 - (HLAPIManagerRequestSerializerType)requestSerializerType {
-    return CTAPIManagerRequestSerializerTypeJSON;
+    return HLAPIManagerRequestSerializerTypeJSON;
 }
 
 @end

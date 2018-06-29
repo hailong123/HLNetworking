@@ -15,13 +15,14 @@
 
 #import "HLLogger.h"
 #import "HLApiProxy.h"
+#import "HLBaseAPIManager.h"
 #import "HLRequestGenerator.h"
 #import "NSURLRequest+CTNetworkingMethods.h"
 
 @interface HLApiProxy ()
 
-@property (nonatomic, strong) NSMutableDictionary *dispatchTable;
 @property (nonatomic, strong) NSNumber *recordeRequestId;
+@property (nonatomic, strong) NSMutableDictionary *dispatchTable;
 
 //AFNetworking
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
@@ -94,11 +95,13 @@
 #pragma mark - Public Method
 - (NSInteger)callGETMethodWithParams:(NSDictionary *)params
                           methodName:(NSString *)methodName
+                      baseAPIManager:(HLBaseAPIManager *)baseAPIManager
                              success:(HLCallBack)success
                                 fail:(HLCallBack)fail {
     
     NSURLRequest *request = [[HLRequestGenerator alloc] generateGETRequestWithRequestParams:params
-                                                                                 methodName:methodName];
+                                                                                 methodName:methodName
+                                                                             baseAPIManager:baseAPIManager];
     
     NSNumber *requestID   = [self callApiWithRequest:request success:success fail:fail];
     
@@ -107,11 +110,13 @@
 
 - (NSInteger)callPOSTMethodWithParams:(NSDictionary *)params
                            methodName:(NSString *)methodName
+                       baseAPIManager:(HLBaseAPIManager *)baseAPIManager
                               success:(HLCallBack)success
                                  fail:(HLCallBack)fail {
     
     NSURLRequest *request = [[HLRequestGenerator alloc] generatePOSTRequestWithRequestParams:params
-                                                                                 methodName:methodName];
+                                                                                 methodName:methodName
+                                                                              baseAPIManager:baseAPIManager];
     
     NSNumber *requestID   = [self callApiWithRequest:request success:success fail:fail];
     
@@ -120,11 +125,13 @@
 
 - (NSInteger)callPUTMethodWithParams:(NSDictionary *)params
                           methodName:(NSString *)methodName
+                      baseAPIManager:(HLBaseAPIManager *)baseAPIManager
                              success:(HLCallBack)success
                                 fail:(HLCallBack)fail {
     
     NSURLRequest *request = [[HLRequestGenerator alloc] generatePUTRequestWithRequestParams:params
-                                                                                 methodName:methodName];
+                                                                                 methodName:methodName
+                                                                             baseAPIManager:baseAPIManager];
     
     NSNumber *requestID   = [self callApiWithRequest:request success:success fail:fail];
     
@@ -133,11 +140,13 @@
 
 - (NSInteger)callDELETEMethodWithParams:(NSDictionary *)params
                              methodName:(NSString *)methodName
+                         baseAPIManager:(HLBaseAPIManager *)baseAPIManager
                                 success:(HLCallBack)success
                                    fail:(HLCallBack)fail {
     
     NSURLRequest *request = [[HLRequestGenerator alloc] generateDELETERequestWithRequestParams:params
-                                                                                    methodName:methodName];
+                                                                                    methodName:methodName
+                                                                                baseAPIManager:baseAPIManager];
     
     NSNumber *requestID   = [self callApiWithRequest:request success:success fail:fail];
     
@@ -176,7 +185,6 @@
     if (!_sessionManager) {
         _sessionManager = [AFHTTPSessionManager manager];
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
-        _sessionManager.requestSerializer  = [AFHTTPRequestSerializer  serializer];
         _sessionManager.securityPolicy.validatesDomainName        = NO;
         _sessionManager.securityPolicy.allowInvalidCertificates   = YES;
         _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:

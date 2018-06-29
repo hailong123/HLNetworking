@@ -25,6 +25,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		FE1BDB2E20DE245B00C74904 /* HLHomeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1BDB2D20DE245B00C74904 /* HLHomeRequest.m */; };
+		FEFFCE2020E48BFC0028604A /* HLTestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFFCE1F20E48BFC0028604A /* HLTestRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		E7C55142B296EC3F36163951 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FE1BDB2C20DE245B00C74904 /* HLHomeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHomeRequest.h; sourceTree = "<group>"; };
 		FE1BDB2D20DE245B00C74904 /* HLHomeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHomeRequest.m; sourceTree = "<group>"; };
+		FEFFCE1E20E48BFC0028604A /* HLTestRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLTestRequest.h; sourceTree = "<group>"; };
+		FEFFCE1F20E48BFC0028604A /* HLTestRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLTestRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 			children = (
 				FE1BDB2C20DE245B00C74904 /* HLHomeRequest.h */,
 				FE1BDB2D20DE245B00C74904 /* HLHomeRequest.m */,
+				FEFFCE1E20E48BFC0028604A /* HLTestRequest.h */,
+				FEFFCE1F20E48BFC0028604A /* HLTestRequest.m */,
 			);
 			path = HLRequest;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 			files = (
 				FE1BDB2E20DE245B00C74904 /* HLHomeRequest.m in Sources */,
 				6003F59E195388D20070C39A /* HLAppDelegate.m in Sources */,
+				FEFFCE2020E48BFC0028604A /* HLTestRequest.m in Sources */,
 				6003F5A7195388D20070C39A /* HLViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);

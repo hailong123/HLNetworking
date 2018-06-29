@@ -14,16 +14,17 @@
 #endif
 
 #import "HLAppContext.h"
+#import "HLBaseAPIManager.h"
 #import "HLNetworkingConfigurationManager.h"
 #import "NSURLRequest+CTNetworkingMethods.h"
 
 @interface HLRequestGenerator ()
 
-@property (nonatomic, strong) AFHTTPRequestSerializer *httpRequestSerializer;
-
 @end
 
 @implementation HLRequestGenerator
+
+#pragma mark - Private Method
 
 + (HLRequestGenerator *)shareInstance {
     
@@ -37,52 +38,13 @@
     return _instance;
 }
 
-- (NSURLRequest *)generateGETRequestWithRequestParams:(NSDictionary *)requestParams
-                                           methodName:(NSString *)methodName {
-    
-    NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
-                                                                      parameters:requestParams
-                                                                      httpMethod:@"GET"
-                                                                    needHttpBody:NO];
-    return request;
-}
-
-- (NSURLRequest *)generatePOSTRequestWithRequestParams:(NSDictionary *)requestParams
-                                            methodName:(NSString *)methodName {
-    
-    NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
-                                                                      parameters:requestParams
-                                                                      httpMethod:@"POST"
-                                                                    needHttpBody:YES];
-    return request;
-}
-
-- (NSURLRequest *)generatePUTRequestWithRequestParams:(NSDictionary *)requestParams
-                                           methodName:(NSString *)methodName {
-    
-    NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
-                                                                      parameters:requestParams
-                                                                      httpMethod:@"PUT"
-                                                                    needHttpBody:YES];
-    return request;
-}
-
-- (NSURLRequest *)generateDELETERequestWithRequestParams:(NSDictionary *)requestParams
-                                              methodName:(NSString *)methodName {
-    
-    NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
-                                                                      parameters:requestParams
-                                                                      httpMethod:@"DELETE"
-                                                                    needHttpBody:YES];
-    return request;
-}
-
 - (NSMutableURLRequest *)generateMutableURLReqeustWithMethodName:(NSString *)methodName
                                                       parameters:(NSDictionary *)requestParams
-                                                      httpMethod:(NSString *)httpMethod
-                                                    needHttpBody:(BOOL)needBody {
+                                                  baseAPIManager:(HLBaseAPIManager *)baseAPIManager
+                                                      httpMethod:(NSString *)httpMethod {
     
     NSParameterAssert(methodName);
+    NSParameterAssert(httpMethod);
     
     HLNetworkingConfigurationManager *networkConfig = [HLNetworkingConfigurationManager shareConfig];
     
@@ -94,38 +56,87 @@
         urlString = [NSString stringWithFormat:@"%@/%@",networkConfig.baseUrl,methodName];
     }
     
-    NSMutableURLRequest *request = [self.httpRequestSerializer requestWithMethod:methodName
-                                                                       URLString:urlString
-                                                                      parameters:requestParams
-                                                                           error:NULL];
     
-    [networkConfig.commonHeaderFiledDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    
+    NSMutableURLRequest *request = [[self requestSerializerForRequest:baseAPIManager] requestWithMethod:methodName
+                                                                                              URLString:urlString
+                                                                                             parameters:requestParams
+                                                                                                  error:NULL];
+    
+    [networkConfig.httpHeaderDictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         [request setValue:obj forHTTPHeaderField:key];
     }];
     
-    if (needBody) {
-        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:requestParams options:0 error:NULL];
-    }
-    
-    request.HTTPMethod    = httpMethod;
     request.requestParams = requestParams;
     
     if ([HLAppContext shareInstance].accessToken) {
         [request setValue:[HLAppContext shareInstance].accessToken
        forHTTPHeaderField:HLAccessTokenName];
     }
-
+    
     return request;
 }
 
-- (AFHTTPRequestSerializer *)httpRequestSerializer {
-    if (!_httpRequestSerializer) {
-        _httpRequestSerializer = [AFHTTPRequestSerializer serializer];
-        _httpRequestSerializer.cachePolicy      = NSURLRequestUseProtocolCachePolicy;
-        _httpRequestSerializer.timeoutInterval  = [HLNetworkingConfigurationManager shareConfig].timeoutSeconds;
+- (AFHTTPRequestSerializer *)requestSerializerForRequest:(HLBaseAPIManager *)baseAPIManager {
+    
+    AFHTTPRequestSerializer *requestSerializer = nil;
+    
+    if ([baseAPIManager.child requestSerializerType] == HLAPIManagerRequestSerializerTypeHTTP) {
+        requestSerializer = [AFHTTPRequestSerializer serializer];
+    } else {
+        requestSerializer = [AFJSONRequestSerializer serializer];
     }
     
-    return _httpRequestSerializer;
+    return requestSerializer;
 }
+
+#pragma mark - Public Method
+- (NSURLRequest *)generateGETRequestWithRequestParams:(NSDictionary *)requestParams
+                                           methodName:(NSString *)methodName
+                                       baseAPIManager:(HLBaseAPIManager *)baseAPIManager {
+    
+    NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
+                                                                      parameters:requestParams
+                                                                  baseAPIManager:baseAPIManager
+                                                                      httpMethod:@"GET"];
+    return request;
+}
+
+- (NSURLRequest *)generatePOSTRequestWithRequestParams:(NSDictionary *)requestParams
+                                            methodName:(NSString *)methodName
+                                        baseAPIManager:(HLBaseAPIManager *)baseAPIManager {
+    
+    NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
+                                                                      parameters:requestParams
+                                                                  baseAPIManager:baseAPIManager
+                                                                      httpMethod:@"POST"];
+    return request;
+}
+
+- (NSURLRequest *)generatePUTRequestWithRequestParams:(NSDictionary *)requestParams
+                                           methodName:(NSString *)methodName
+                                       baseAPIManager:(HLBaseAPIManager *)baseAPIManager {
+    
+    NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
+                                                                      parameters:requestParams
+                                                                  baseAPIManager:baseAPIManager
+                                                                      httpMethod:@"PUT"];
+    return request;
+}
+
+- (NSURLRequest *)generateDELETERequestWithRequestParams:(NSDictionary *)requestParams
+                                              methodName:(NSString *)methodName
+                                          baseAPIManager:(HLBaseAPIManager *)baseAPIManager {
+    
+    NSMutableURLRequest *request = [self generateMutableURLReqeustWithMethodName:methodName
+                                                                      parameters:requestParams
+                                                                  baseAPIManager:baseAPIManager
+                                                                      httpMethod:@"DELETE"];
+    return request;
+}
+
+#pragma mark - Delegate
+
+#pragma mark - Setter And Getter
 
 @end

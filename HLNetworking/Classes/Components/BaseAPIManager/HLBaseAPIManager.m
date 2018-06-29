@@ -13,7 +13,7 @@
 #define kCALLAPI(REQUEST_METHOD,REQUEST_ID)                                                     \
 {                                                                                               \
     __weak typeof(self) weakSelf = self;                                                        \
-    REQUEST_ID = [[HLApiProxy shareInstance] call##REQUEST_METHOD##MethodWithParams:apiParams                    methodName:self.child.requestUrl success:^(HLURLResponse *response) {                   \
+    REQUEST_ID = [[HLApiProxy shareInstance] call##REQUEST_METHOD##MethodWithParams:apiParams                    methodName:self.child.requestUrl  baseAPIManager:self success:^(HLURLResponse *response) {                   \
         __strong typeof(weakSelf) strongSelf = weakSelf;                                        \
         [strongSelf successedOnCallingAPI:response];                                            \
     } fail:^(HLURLResponse *response) {                                                         \
@@ -68,13 +68,13 @@
     NSMutableDictionary *apiParams = [NSMutableDictionary dictionary];
     
     if ([self.child respondsToSelector:@selector(reformParams:)]) {
-        apiParams = [[self reformParams:nil] mutableCopy];
+        apiParams = [[self reformParams:@{}] mutableCopy];
         [apiParams addEntriesFromDictionary:params];
     } else {
-        apiParams = [[self reformParams:params] mutableCopy];
+        apiParams = [params mutableCopy];
     }
     
-    if (self.child.requestSerializerType == CTAPIManagerRequestSerializerTypeJSON) {
+    if (self.child.requestSerializerType == HLAPIManagerRequestSerializerTypeJSON) {
         [[HLApiProxy shareInstance] setValue:[AFJSONRequestSerializer  serializer] forKeyPath:@"sessionManager.requestSerializer"];
     } else {
         [[HLApiProxy shareInstance] setValue:[AFHTTPRequestSerializer  serializer] forKeyPath:@"sessionManager.requestSerializer"];

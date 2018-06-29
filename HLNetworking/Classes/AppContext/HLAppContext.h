@@ -53,12 +53,20 @@
 @property (nonatomic, assign, readonly) CGFloat latitude;
 @property (nonatomic, assign, readonly) CGFloat longitude;
 
+/** 创建 HLAppContext 实例 */
 + (instancetype)shareInstance;
 
+/** 调用此方法可清除用户的配置信息 */
 - (void)cleanUserInfo;
-- (void)updateAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken;
 
+/** 更新token相关信息 */
+- (void)updateAccessToken:(NSString *)accessToken
+             refreshToken:(NSString *)refreshToken;
+
+/** 调用此方法可使定位结束 */
 - (void)appEnded;
+
+/** 调用此方法可开启定位功能 */
 - (void)appStarted;
 
 @end

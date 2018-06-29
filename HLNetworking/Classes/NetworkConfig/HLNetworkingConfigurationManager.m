@@ -29,9 +29,8 @@ NSString * const kNotificationNameErrorCodeNumber = @"kNotificationNameErrorCode
         self.cdnsUrl    = @"";
         self.apiVersion = @"";
         
-        self.timeoutSeconds = 60.0f;
-        
-        self.commonHeaderFiledDic = @{};
+        self.timeoutSeconds       = 60.0f;
+        self.httpHeaderDictionary = @{};
     }
     
     return self;

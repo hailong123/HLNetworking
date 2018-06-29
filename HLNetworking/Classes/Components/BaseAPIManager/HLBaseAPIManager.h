@@ -76,8 +76,8 @@ typedef NS_ENUM(NSUInteger, HLAPIManagerRequestType) {
 
 //序列化格式
 typedef NS_ENUM(NSUInteger, HLAPIManagerRequestSerializerType) {
-    CTAPIManagerRequestSerializerTypeJSON,
-    CTAPIManagerRequestSerializerTypeHTTP
+    HLAPIManagerRequestSerializerTypeJSON,
+    HLAPIManagerRequestSerializerTypeHTTP
 };
 
 //***** HLAManager ******//
@@ -94,7 +94,6 @@ typedef NS_ENUM(NSUInteger, HLAPIManagerRequestSerializerType) {
 - (BOOL)shouldCache;
 - (BOOL)shouldLoadFormNative;
 - (NSDictionary *)reformParams:(NSDictionary *)paramsDic;
-- (NSDictionary *)loadDataWithParams:(NSDictionary *)paramsDic;
 
 @end
 
@@ -147,6 +146,5 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 - (void)cleanData;
 - (BOOL)shouldCache;
-- (NSDictionary *)reformParams:(NSDictionary *)params;
 
 @end

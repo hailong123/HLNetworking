@@ -58,7 +58,7 @@
     
     
     
-    NSMutableURLRequest *request = [[self requestSerializerForRequest:baseAPIManager] requestWithMethod:methodName
+    NSMutableURLRequest *request = [[self requestSerializerForRequest:baseAPIManager] requestWithMethod:httpMethod
                                                                                               URLString:urlString
                                                                                              parameters:requestParams
                                                                                                   error:NULL];

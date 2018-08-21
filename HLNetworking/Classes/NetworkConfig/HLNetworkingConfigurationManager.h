@@ -8,7 +8,7 @@
     外部可使用此类,进行网络相关的信息配置
  */
 
-extern NSString * const kNotificationNameErrorCodeNumber;
+FOUNDATION_EXPORT NSString * const kNotificationNameErrorCodeNumber;
 
 #import <Foundation/Foundation.h>
 
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *apiVersion;
 
 /** 设置请求的 请求包头 默认为nil */
-@property (nonatomic, copy) NSDictionary *httpHeaderDictionary;
+@property (nonatomic, copy) NSDictionary <NSString *,NSString *>*HTTPRequestHeaders;
 
 /** 用于设置请求的超时时间 默认为60s */
 @property (nonatomic, assign) NSTimeInterval timeoutSeconds;

@@ -31,7 +31,7 @@ NSString * const kNotificationNameErrorCodeNumber = @"kNotificationNameErrorCode
         self.accessToken = @"";
         
         self.timeoutSeconds       = 60.0f;
-        self.httpHeaderDictionary = @{};
+        self.HTTPRequestHeaders   = @{};
     }
     
     return self;

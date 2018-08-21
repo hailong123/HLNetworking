@@ -26,7 +26,9 @@ static NSString * const KHLAPIBaseManagerRequestID = @"KHLAPIBaseManagerRequestI
 @protocol HLBaseAPIManagerCallBackDelegate <NSObject>
 
 @required
-//请求成功失败的回调
+/**
+    请求成功失败的回调 将接口对应的数据返回
+ */
 - (void)managerAPIDidFaild:(HLBaseAPIManager *)baseAPIManager;
 - (void)managerAPIDidSuccess:(HLBaseAPIManager *)baseAPIManager;
 
@@ -34,7 +36,12 @@ static NSString * const KHLAPIBaseManagerRequestID = @"KHLAPIBaseManagerRequestI
 
 @protocol HLAPIManagerDataReformer<NSObject>
 @optional
-//可以通过此方法进行数据的转换
+/**
+    此方法用于处理接口返回数据的中间层协议, 遵守此协议可为上层提供上层所需的数据
+    @params manager 当前请求类
+            data    接口后台返回的数据
+    @return         返回根据上层所需要所组装的数据
+ */
 - (id)manager:(HLBaseAPIManager *)manager reformData:(NSDictionary *)data;
 
 @end
@@ -42,16 +49,30 @@ static NSString * const KHLAPIBaseManagerRequestID = @"KHLAPIBaseManagerRequestI
 @protocol HLAPIManagerValidator<NSObject>
 
 @required
-//进行参数以及回调的验证
+/**
+    对参数以及回调的验证
+    @return 返回验证后是否通过 默认为YES
+ */
 - (BOOL)manager:(HLBaseAPIManager *)manager isCorrectWithParamsData:(NSDictionary *)data;
+
+/**
+ 是否对回调进行触发
+ @return 返回验证后是否通过 默认为YES
+ */
 - (BOOL)manager:(HLBaseAPIManager *)manager isCorrectWithCallBackData:(NSDictionary *)data;
 
 @end
 
+/**
+    请求接口的控制器, 必须遵守此协议,用于提供接口所需数据
+ */
 @protocol HLAPIManagerParamSource <NSObject>
 
 @required
-//提供参数的回调
+/**
+    提供参数的回调
+    @return 返回接口所需参数字典
+ */
 - (NSDictionary *)paramsForApi:(HLBaseAPIManager *)manager;
 
 @end

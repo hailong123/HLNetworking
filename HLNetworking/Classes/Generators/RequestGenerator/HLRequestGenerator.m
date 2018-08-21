@@ -63,7 +63,7 @@
                                                                                              parameters:requestParams
                                                                                                   error:NULL];
     
-    [networkConfig.httpHeaderDictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    [networkConfig.HTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         [request setValue:obj forHTTPHeaderField:key];
     }];
     

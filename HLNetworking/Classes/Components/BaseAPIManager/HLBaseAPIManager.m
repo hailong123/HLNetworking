@@ -79,7 +79,6 @@
             if ([self.child shouldLoadFormNative]) {
                 [self loadDataFromNative];
             }
-            
             //TODO:进行缓存的配置
             
             if ([self isReachable]) {

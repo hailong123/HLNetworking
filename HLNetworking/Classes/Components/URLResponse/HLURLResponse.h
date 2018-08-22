@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 响应请求的请求参数 */
 @property (nonatomic, copy) NSDictionary *requestParams;
 
+/** 请求的错误信息 **/
+@property (nonatomic, weak) NSError *error;
+
 /**
  描述:生成请求响应对象
  @params  requestId    请求的ID

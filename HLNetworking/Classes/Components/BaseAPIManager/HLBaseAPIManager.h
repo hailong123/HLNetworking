@@ -106,8 +106,11 @@ typedef NS_ENUM(NSUInteger, HLAPIManagerRequestSerializerType) {
 @protocol HLAPIManager <NSObject>
 
 @required
+//请求方法地址
 - (NSString *)requestUrl;
+//请求方法 POST GET ....
 - (HLAPIManagerRequestType)requestMethod;
+//请求序列化格式 JSON  HTTP
 - (HLAPIManagerRequestSerializerType)requestSerializerType;
 
 @optional
@@ -125,7 +128,6 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 //****** HLAPIManagerInterceptor ******//
 //将方法的回调剥离出来
-
 @protocol HLAPIManagerInterceptor <NSObject>
 
 @optional
@@ -141,10 +143,36 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 @end
 
 @interface HLBaseAPIManager : NSObject
-
+/*
+    数据验证代理
+    设置此代理,可以在进行对发起请求前对参数进行验证 和 接收到回调之后对服务端返回的数据进行验证
+ */
 @property (nonatomic, weak) id <HLAPIManagerValidator> validator;
+
+/*
+    方法拦截代理
+    设置次代理,可对请求的以下步骤进行监听
+ 
+    **请求成功前**
+    **请求成功后**
+ 
+    **请求失败前**
+    **请求失败后**
+ 
+    **将要调用API**
+    **调用API之后**
+ 
+ */
 @property (nonatomic, weak) id <HLAPIManagerInterceptor> interceptor;
+
+/*
+    接口入参代理
+ */
 @property (nonatomic, weak) id <HLAPIManagerParamSource> paramsSource;
+
+/*
+    请求回调代理
+ */
 @property (nonatomic, weak) id <HLBaseAPIManagerCallBackDelegate> delegate;
 
 @property (nonatomic, weak) NSObject <HLAPIManager> *child;

@@ -32,6 +32,7 @@
     
     if (self = [super init]) {
         
+        self.error         = error;
         self.reqeust       = request;
         self.requestId     = [requestId integerValue];
         self.requestParams = request.requestParams;
@@ -58,7 +59,7 @@
         self.reqeust       = request;
         self.requestId     = [requestId integerValue];
         self.requestParams = request.requestParams;
-        
+
         self.hasCache = NO;
         
         if (responseData) {

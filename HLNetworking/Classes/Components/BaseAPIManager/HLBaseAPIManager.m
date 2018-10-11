@@ -160,24 +160,27 @@
     //删除请求根据 reqeustID
     [self removeRequestWithRequestId:response.requestId];
     
-    if ([self.validator manager:self isCorrectWithCallBackData:response.content]) {
-        //TODO:进行缓存处理
+    if ([self.validator manager:self isCorrectWithGloabParamData:response.content]) {
         
-        if ([self beforePerformSuccessWithResponse:response]) {
-            if ([self.child shouldLoadFormNative]) {
-                if (self.response.hasCache == YES) {
+        if ([self.validator manager:self isCorrectWithCallBackData:response.content]) {
+            //TODO:进行缓存处理
+            
+            if ([self beforePerformSuccessWithResponse:response]) {
+                if ([self.child shouldLoadFormNative]) {
+                    if (self.response.hasCache == YES) {
+                        [self.delegate managerAPIDidSuccess:self];
+                    }
+                    if (self.isNativeDataEmpty) {
+                        [self.delegate managerAPIDidSuccess:self];
+                    }
+                } else {
                     [self.delegate managerAPIDidSuccess:self];
                 }
-                if (self.isNativeDataEmpty) {
-                    [self.delegate managerAPIDidSuccess:self];
-                }
-            } else {
-                [self.delegate managerAPIDidSuccess:self];
             }
+            [self afterPerformSuccessWithResponse:response];
+        } else {
+            [self failedOnCallingAPI:response errorType:HLAPIManagerErrorTypeNoContent];
         }
-        [self afterPerformSuccessWithResponse:response];
-    } else {
-        [self failedOnCallingAPI:response errorType:HLAPIManagerErrorTypeNoContent];
     }
 }
 
@@ -240,7 +243,7 @@
     return resultData;
 }
 
-- (NSInteger)loadData {
+- (NSInteger)sendRequest {
     
     NSDictionary *params = [self.paramsSource paramsForApi:self];
     NSInteger requestId  = [self loadDataWithParams:params];

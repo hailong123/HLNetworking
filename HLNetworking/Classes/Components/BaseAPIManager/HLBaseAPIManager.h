@@ -50,7 +50,7 @@ static NSString * const KHLAPIBaseManagerRequestID = @"KHLAPIBaseManagerRequestI
 
 @required
 /**
-    对参数以及回调的验证
+    请求前的验证对参数以及回调的验证
     @return 返回验证后是否通过 默认为YES
  */
 - (BOOL)manager:(HLBaseAPIManager *)manager isCorrectWithParamsData:(NSDictionary *)data;
@@ -60,6 +60,8 @@ static NSString * const KHLAPIBaseManagerRequestID = @"KHLAPIBaseManagerRequestI
  @return 返回验证后是否通过 默认为YES
  */
 - (BOOL)manager:(HLBaseAPIManager *)manager isCorrectWithCallBackData:(NSDictionary *)data;
+
+- (BOOL)manager:(HLBaseAPIManager *)manager isCorrectWithGloabParamData:(NSDictionary *)data;
 
 @end
 
@@ -178,6 +180,7 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 @property (nonatomic, weak) NSObject <HLAPIManager> *child;
 
 @property (nonatomic, strong) HLURLResponse *response;
+@property (nonatomic, strong, readonly) id fetchRawData;
 @property (nonatomic, copy, readonly) NSString *errorMessage;
 @property (nonatomic, assign, readonly) HLAPIManagerErrorType errorType;
 
@@ -188,7 +191,7 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 - (id)fetchDataWithReformer:(id<HLAPIManagerDataReformer>)reformer;
 
-- (NSInteger)loadData;
+- (NSInteger)sendRequest;
 
 - (void)cancelAllReqeusts;
 - (void)cancelRequestWithRequestID:(NSInteger)requestID;

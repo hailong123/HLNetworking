@@ -47,7 +47,7 @@
 }
 
 - (void)clickBtn:(UIButton *)btn {
-    [self.homeRequest loadData];
+    [self.homeRequest sendRequest];
 }
 
 #pragma mark - Public Method

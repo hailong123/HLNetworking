@@ -18,10 +18,10 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+                        用于简单的AFNetworking封装
                        DESC
 
-  s.homepage         = 'https://github.com/771145867@qq.com/HLNetworking'
+  s.homepage         = 'https://github.com/hailong123/HLNetworking'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '771145867@qq.com' => '771145867@qq.com' }
@@ -32,11 +32,11 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'HLNetworking/Classes/**/*'
   
-  s.resource_bundles = {
-    'HLNetworking' => ['HLNetworking/Assets/*.*']
-  }
+  # s.resource_bundles = {
+  #   'HLNetworking' => ['HLNetworking/Assets/**/*.*']
+  # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.public_header_files = 'HLNetworking/Classes/**/HLNetworking.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'AFNetworking'
 end

@@ -9,7 +9,6 @@
 #define HLNetworking_h
 
 #import "HLBaseAPIManager.h"
-#import "HLNetworkingConfiguration.h"
 #import "HLNetworkingConfigurationManager.h"
 
 #endif /* HLNetworking_h */

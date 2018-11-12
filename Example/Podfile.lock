@@ -16,12 +16,45 @@ PODS:
     - AFNetworking/NSURLSession
   - HLNetworking (0.1.0):
     - AFNetworking
+    - HLNetworking/AppContext (= 0.1.0)
+    - HLNetworking/Categories (= 0.1.0)
+    - HLNetworking/Components (= 0.1.0)
+    - HLNetworking/Generators (= 0.1.0)
+    - HLNetworking/NetworkConfig (= 0.1.0)
+  - HLNetworking/AppContext (0.1.0):
+    - AFNetworking
+  - HLNetworking/Categories (0.1.0):
+    - AFNetworking
+  - HLNetworking/Components (0.1.0):
+    - AFNetworking
+    - HLNetworking/Components/BaseAPIManager (= 0.1.0)
+    - HLNetworking/Components/HLApiProxy (= 0.1.0)
+    - HLNetworking/Components/LocationManager (= 0.1.0)
+    - HLNetworking/Components/Loger (= 0.1.0)
+    - HLNetworking/Components/URLResponse (= 0.1.0)
+  - HLNetworking/Components/BaseAPIManager (0.1.0):
+    - AFNetworking
+  - HLNetworking/Components/HLApiProxy (0.1.0):
+    - AFNetworking
+  - HLNetworking/Components/LocationManager (0.1.0):
+    - AFNetworking
+  - HLNetworking/Components/Loger (0.1.0):
+    - AFNetworking
+  - HLNetworking/Components/URLResponse (0.1.0):
+    - AFNetworking
+  - HLNetworking/Generators (0.1.0):
+    - AFNetworking
+    - HLNetworking/Generators/RequestGenerator (= 0.1.0)
+  - HLNetworking/Generators/RequestGenerator (0.1.0):
+    - AFNetworking
+  - HLNetworking/NetworkConfig (0.1.0):
+    - AFNetworking
 
 DEPENDENCIES:
   - HLNetworking (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
 
 EXTERNAL SOURCES:
@@ -30,8 +63,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  HLNetworking: c476f612fc6ce8bca448c00ec46e3905174d6f2f
+  HLNetworking: 1c9f33d2e80a1ba552cfb8996fa15092112aeda3
 
-PODFILE CHECKSUM: 2c0cf7f1063afa0289b5d7809a2d865ce5875bbe
+PODFILE CHECKSUM: 336814f44de06b3475507264a67e0c2d9da97d53
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

@@ -24,22 +24,22 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/hailong123/HLNetworking'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '771145867@qq.com' => '771145867@qq.com' }
+  s.author           = { 'SeaDragon' => '771145867@qq.com' }
   s.source           = { :git => 'https://github.com/hailong123/HLNetworking.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.deployment_target = '8.0'
+  s.ios.deployment_target = '8.0'
+  
+  s.dependency 'AFNetworking'
 
-  s.source_files      = 'HLNetworking/Classes/**/*'
-
-  s.subspec 'AppContext' do |AC|
-  	AC.source_files        = 'HLNetworking/Classes/AppContext/*'
-  	AC.public_header_files = 'HLNetworking/Classes/AppContext/*.h'
+  s.subspec 'AppContext' do |appContext|
+  	appContext.source_files        = 'HLNetworking/Classes/AppContext/*'
+  	appContext.public_header_files = 'HLNetworking/Classes/AppContext/*.h'
   end
 
   s.subspec 'Categories' do |categories|
-  	categories.source_files        = 'HLNetworking/Classes/ategories/*'
-  	categories.public_header_files = 'HLNetworking/Classes/ategories/*.h'
+  	categories.source_files        = 'HLNetworking/Classes/Categories/*'
+  	categories.public_header_files = 'HLNetworking/Classes/Categories/*.h'
   	end
 
   s.subspec 'Components' do |components|
@@ -64,8 +64,8 @@ Pod::Spec.new do |s|
   	end
 
   	components.subspec 'URLResponse' do |urlResponse|
-  		loger.source_files        = 'HLNetworking/Classes/Components/URLResponse/*'
-  		loger.public_header_files = 'HLNetworking/Classes/Components/URLResponse/*.h'
+  		urlResponse.source_files        = 'HLNetworking/Classes/Components/URLResponse/*'
+  		urlResponse.public_header_files = 'HLNetworking/Classes/Components/URLResponse/*.h'
   	end
 
   end
@@ -82,7 +82,5 @@ Pod::Spec.new do |s|
   	networkConfig.source_files        = 'HLNetworking/Classes/NetworkConfig/*'
   	networkConfig.public_header_files = 'HLNetworking/Classes/NetworkConfig/*.h'
   end
-
-  s.dependency 'AFNetworking'
   
 end
